@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <script src="http://www.webglearth.com/v2/api.js"></script>
+    <script>
+      function initialize() {
+        var options = {
+          sky: true,
+          atmosphere: false,
+          dragging: true,
+          tilting: true,
+          zooming: true,
+          center: [46.8011, 8.2266],
+          zoom: 2
+        };
+        earth = new WE.map('earth_div', options);
+        var natural = WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          );
+        natural.addTo(earth);
+
+        var toner = WE.tileLayer('http://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=norges_grunnkart&zoom={z}&x={x}&y={y}', {
+          attribution: 'Norwegian Mapping Authority'
+        });
+        toner.addTo(earth);
+      }
+    </script>
+    <style>
+      html, body{padding: 0; margin: 0;}
+      #earth_div{top: 0; right: 0; bottom: 0; left: 0; position: absolute !important;}
+    </style>
+    <title>WebGL Earth API: Overlays</title>
+  </head>
+  <body onload="initialize()">
+    <div id="earth_div"></div>
+  </body>
+</html>
